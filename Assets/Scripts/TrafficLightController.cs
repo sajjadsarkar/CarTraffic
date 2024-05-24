@@ -21,19 +21,16 @@ public class TrafficLightController : MonoBehaviour
     {
         while (true)
         {
-            // Red Light
             SetLightState(redLight, true);
             SetLightState(yellowLight, false);
             SetLightState(greenLight, false);
             yield return new WaitForSeconds(redLightDuration);
 
-            // Green Light
             SetLightState(redLight, false);
             SetLightState(yellowLight, false);
             SetLightState(greenLight, true);
             yield return new WaitForSeconds(greenLightDuration);
 
-            // Yellow Light
             SetLightState(redLight, false);
             SetLightState(yellowLight, true);
             SetLightState(greenLight, false);

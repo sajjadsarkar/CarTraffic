@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
 {
     internal static GameManager Instance;
 
-    public TextMeshProUGUI timerText;  // Reference to the TextMeshProUGUI component
+    public TextMeshProUGUI timerText;       
     public TextMeshProUGUI fineText;  
     public TextMeshProUGUI gameoverfineText;  
     public TextMeshProUGUI winfineText;  
     public TextMeshProUGUI wintimeLeftText;  
-    public GameObject gameOverPopup;   // Reference to the Game Over popup GameObject
-    private float timeRemaining = 60f; // Total time in seconds
+    public GameObject gameOverPopup;          
+    private float timeRemaining = 60f;     
     private bool isGameOver = false;
     public int totalFine = 0;
     private void Awake()
@@ -22,16 +22,16 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        gameOverPopup.SetActive(false); // Ensure the game over popup is inactive at the start
+        gameOverPopup.SetActive(false);           
         StartCoroutine(Timer());
     }
     IEnumerator Timer()
     {
         while (timeRemaining > 0 && !isGameOver)
         {
-            yield return new WaitForSeconds(1f); // Wait for 1 second
-            timeRemaining--; // Decrease the time remaining
-            UpdateTimerDisplay(); // Update the timer UI
+            yield return new WaitForSeconds(1f);     
+            timeRemaining--;     
+            UpdateTimerDisplay();     
         }
 
         if (timeRemaining <= 0)
@@ -48,15 +48,14 @@ public class GameManager : MonoBehaviour
     }
     void UpdateTimerDisplay()
     {
-        // Display the time remaining in seconds
         timerText.text = "Time Left: " + Mathf.CeilToInt(timeRemaining).ToString();
     }
 
     public void GameOver()
     {
         isGameOver = true;
-        Time.timeScale = 0; // Stop the game
-        gameOverPopup.SetActive(true); // Show the game over popup
+        Time.timeScale = 0;    
+        gameOverPopup.SetActive(true);      
 
     }
 

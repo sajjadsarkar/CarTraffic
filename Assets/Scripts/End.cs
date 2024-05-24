@@ -13,6 +13,6 @@ public class End : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Win.SetActive(true);
-        Time.timeScale = 0; // Stop the game
+        Time.timeScale = 0;    
     }
 }

@@ -6,6 +6,10 @@ public class Player : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.Instance.GameOver();
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.Instance.GameOver();
+        }
+
     }
 }
