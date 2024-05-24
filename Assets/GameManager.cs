@@ -8,10 +8,14 @@ public class GameManager : MonoBehaviour
     internal static GameManager Instance;
 
     public TextMeshProUGUI timerText;  // Reference to the TextMeshProUGUI component
+    public TextMeshProUGUI fineText;  
+    public TextMeshProUGUI gameoverfineText;  
+    public TextMeshProUGUI winfineText;  
+    public TextMeshProUGUI wintimeLeftText;  
     public GameObject gameOverPopup;   // Reference to the Game Over popup GameObject
     private float timeRemaining = 60f; // Total time in seconds
     private bool isGameOver = false;
-    public int totalFine;
+    public int totalFine = 0;
     private void Awake()
     {
         Instance = this;
@@ -37,7 +41,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        fineText.text = "Total Fine: " + Mathf.CeilToInt(totalFine).ToString();
+        gameoverfineText.text = "Total Fine: " + Mathf.CeilToInt(totalFine).ToString();
+        winfineText.text = "Total Fine: " + Mathf.CeilToInt(totalFine).ToString();
+        wintimeLeftText.text = "Time Left: " + Mathf.CeilToInt(timeRemaining).ToString();
     }
     void UpdateTimerDisplay()
     {
@@ -50,16 +57,14 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Time.timeScale = 0; // Stop the game
         gameOverPopup.SetActive(true); // Show the game over popup
+
     }
 
     public void PlayAgain()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
-    public void TotalFine(float fineTime)
-    {
-        Debug.Log(fineTime);
-        fineTime = totalFine;
-    }
+   
 }

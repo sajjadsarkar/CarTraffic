@@ -5,9 +5,14 @@ using UnityEngine;
 public class End : MonoBehaviour
 {
     public GameObject Win;
+    private void Start()
+    {
+        Win.SetActive(false);
 
+    }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Win");
+        Win.SetActive(true);
+        Time.timeScale = 0; // Stop the game
     }
 }
